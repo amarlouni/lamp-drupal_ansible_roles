@@ -1,0 +1,17 @@
+---
+- name: "Ubuntu LAMP server with Drupal Play"
+  hosts: all
+  become: yes
+  vars_files:
+    - vars.yml
+  pre_tasks:
+    - name: "Update apt cache if needed."
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+  roles:
+    - common1
+    - apache-php1 
+    - mysql1
+    - composer-drush1
+    - drupal1
